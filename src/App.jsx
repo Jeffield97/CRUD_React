@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import UserCard from "./components/UserCard/UserCard";
+import UserForm from "./components/UserForm/UserForm";
 import UserList from "./containers/UserList/UserList";
 import { deleteUser } from "./utils/DeleteUser";
 import { getUser } from "./utils/GetUser";
@@ -11,6 +12,11 @@ import { putUser } from "./utils/PutUser";
 function App() {
   //! Reactive Variables
   const [users, setUsers] = useState([]);
+  const [isActive, setisActive] = useState("invisible");
+
+  const handleCreate = () => {
+    setisActive("visible");
+  };
   const user = {
     email: "user@example.com",
     password: "string",
@@ -70,11 +76,9 @@ function App() {
     // deleteData(9518)
   }, []);
   return (
-    <div className="App">
+    <div className="App relative">
       <button
-        onClick={() => {
-          console.log("Clicked");
-        }}
+        onClick={handleCreate}
         className="btn btn-outline sticky top-5 m-3 btn-sm"
       >
         Create a new User
@@ -82,7 +86,14 @@ function App() {
       <div className="text-center">
         <h1 className="text-3xl font-bold">USER LIST</h1>
       </div>
-      <UserList users={users} deleteData={deleteData}></UserList>
+
+      <UserList
+        users={users}
+        deleteData={deleteData}
+        isActive={isActive}
+        setisActive={setisActive}
+        postData={postData}
+      ></UserList>
     </div>
   );
 }

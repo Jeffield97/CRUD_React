@@ -1,9 +1,12 @@
 import React from "react";
 
-const UserCard = ({ user, deleteSelf }) => {
+const UserCard = ({ user, deleteSelf, isActive, setisActive }) => {
   const handleDelete = (e) => {
     const id = e.target.parentElement.parentElement.id;
     deleteSelf(id);
+  };
+  const handleEdit = () => {
+    setisActive("visible");
   };
   return (
     <div
@@ -16,10 +19,15 @@ const UserCard = ({ user, deleteSelf }) => {
         <p>{`Birthday: ${user.birthday}`}</p>
       </div>
       <div className=" gap-5 flex justify-between">
-        <button className="btn btn-sm" onClick={handleDelete}>
-          Eliminar
+        <button
+          className="btn btn-sm bg-red-500 text-white"
+          onClick={handleDelete}
+        >
+          Delete
         </button>
-        <button className="btn btn-sm">Edit</button>
+        <button className="btn btn-sm btn-outline" onClick={handleEdit}>
+          Edit
+        </button>
       </div>
     </div>
   );

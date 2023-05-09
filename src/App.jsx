@@ -70,10 +70,6 @@ function App() {
   //! This function is executed once
   useEffect(() => {
     getAllData();
-    // getData(9516);
-    // postData(user2);
-    // putData(9519, user);
-    // deleteData(9518)
   }, []);
   return (
     <div className="App relative">
